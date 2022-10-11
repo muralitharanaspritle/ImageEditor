@@ -12,9 +12,12 @@ import com.facebook.soloader.SoLoader;
 import com.imageeditor.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-
+import java.util.Arrays;
+import com.rnfs.RNFSPackage;
+import com.facebook.react.shell.MainReactPackage;
 public class MainApplication extends Application implements ReactApplication {
 
+ 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
         @Override
@@ -36,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
           return "index";
         }
       };
+     
 
   private final ReactNativeHost mNewArchitectureNativeHost =
       new MainApplicationReactNativeHost(this);
@@ -56,6 +60,13 @@ public class MainApplication extends Application implements ReactApplication {
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+  }
+
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+      new MainReactPackage(), // <---- add comma
+      new RNFSPackage() // <---------- add package
+    );
   }
 
   /**
@@ -88,4 +99,5 @@ public class MainApplication extends Application implements ReactApplication {
       }
     }
   }
+ 
 }
