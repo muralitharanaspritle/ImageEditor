@@ -8,9 +8,20 @@ const MyButton = props => {
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
-        style={{flex: 1, borderRadius: 10, ...Center}}
+        style={{
+          flex: 1,
+          borderRadius: props.borderRadius ? props.borderRadius : 10,
+          ...Center,
+        }}
         colors={props.color}>
-        <Text style={{color: 'white',fontSize:15,fontWeight:"bold"}}>{props.title}</Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: props.titleSize ? props.titleSize : 15,
+            fontWeight: 'bold',
+          }}>
+          {props.title}
+        </Text>
       </LinearGradient>
     </TouchableOpacity>
   );
